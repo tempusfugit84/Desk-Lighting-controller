@@ -24,8 +24,8 @@
 
 import time
 from keybow2040 import Keybow2040
-from keybow_hardware.pim56x import PIM56X as Hardware # for Keybow 2040
-#from keybow_hardware.pim551 import PIM551 as Hardware # for Pico RGB Keypad Base
+#from keybow_hardware.pim56x import PIM56X as Hardware # for Keybow 2040
+from keybow_hardware.pim551 import PIM551 as Hardware # for Pico RGB Keypad Base
 
 import usb_hid
 from adafruit_hid.keyboard import Keyboard
@@ -81,6 +81,8 @@ layer_3 =     {6: ConsumerControlCode.VOLUME_DECREMENT,
                14: ConsumerControlCode.VOLUME_INCREMENT,
                15: ConsumerControlCode.SCAN_NEXT_TRACK}
 
+
+
 layers =      {1: layer_1,
                2: layer_2,
                3: layer_3}
@@ -93,7 +95,7 @@ selectors =   {1: keys[1],
                3: keys[3]}
 
 # Start on layer 1
-current_layer = 1
+current_layer = 3
 
 # The colours for each layer
 colours = {1: (255, 0, 255),
@@ -132,7 +134,7 @@ while True:
                 if selectors[layer].pressed:
                     current_layer = layer
 
-                    # Set the key LEDs first to off, then to their layer colour
+                    # Set the key LEDs first to off, then to their layer colour
                     for k in layer_keys:
                         keys[k].set_led(0, 0, 0)
 
